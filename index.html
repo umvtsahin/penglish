@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Penglish</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="intro">
+    <div class="penguin-emoji">🐧</div>
+
+    <div id="loader">
+        <div id="loadingBar">
+            <div id="loadingFill"></div>
+        </div>
+    </div>
+
+    <div id="speech" class="speech hidden">
+        <p id="speechText"></p>
+        <small>Devam etmek için dokun</small>
+    </div>
+    
+    <button id="skipIntroBtn" class="skip-btn hidden">İntroyu Atla</button> 
+</div>
+
+<div id="placement" class="hidden">
+    <div id="questionCounter" style="margin-bottom: 10px; font-weight: 600;"></div> 
+    
+    <div class="test-header">
+        <h2>Seviyeni Ölçelim 🎯</h2>
+        <p id="placementSpeech"></p>
+    </div>
+
+    <div id="explanationBox" class="hidden">
+        <div class="explanation-content">
+            <div class="penguin-icon">🐧</div>
+            <p id="explanationText"></p>
+        </div>
+        <button id="understoodBtn" class="action-btn">Anladım ve Öğrendim!</button>
+    </div>
+
+    <div id="questionArea">
+        <h3 id="questionText"></h3>
+        <div id="answers"></div>
+    </div>
+    
+    <div id="motivationArea"></div>
+</div>
+
+<div id="finishScreen" class="hidden">
+    </div>
+
+<div id="app" class="hidden"></div>
+
+<script src="questions.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

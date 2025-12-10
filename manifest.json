@@ -1,0 +1,9 @@
+{
+  "name": "Penglish",
+  "short_name": "Penglish",
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#2563EB",
+  "background_color": "#F9FAFB",
+  "icons": []
+}
