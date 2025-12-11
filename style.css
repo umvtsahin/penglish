@@ -1,218 +1,614 @@
-/* style.css */
+/* style.css - Ultra Premium Mobile Design */
 
-/* Genel Stil Sıfırlamaları */
+/* --- GENEL SIFIRLAMA VE FONT --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
 body {
-    font-family: 'Inter', sans-serif;
-    /* TEMAYI DEĞİŞTİRDİM (Daha uyumlu koyu tonlar) */
-    background-color: #000000; 
-    color: #f0f0f0; 
+    font-family: 'Inter', sans-serif; 
+    background-color: #0A0A0A; /* Derin Siyah */
+    color: #E0E0E0;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start; 
     min-height: 100vh;
+    box-sizing: border-box;
 }
 
-#intro, #placement, #finishScreen {
+.container {
     width: 100%;
     max-width: 450px;
-    padding: 40px 20px;
-    text-align: center;
-    position: relative; 
-    /* Ekranın ortasına sabitler */
-    display: flex; 
+    background-color: #121212; /* Uygulama Arka Planı: Hafifçe Açık Siyah */
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.9);
+    min-height: 100vh;
+    display: flex;
     flex-direction: column;
-    align-items: center;
+    overflow: hidden; 
 }
 
-/* Yardımcı Sınıflar */
+.screen {
+    padding: 24px;
+    box-sizing: border-box;
+    width: 100%;
+    text-align: center;
+    flex-shrink: 0;
+    position: relative; 
+}
+
 .hidden {
     display: none !important;
 }
 
-/* --- INTRO --- */
-.penguin-emoji {
-    font-size: 80px;
+/* --- Geri Butonu Stili --- */
+.back-button {
+    position: absolute;
+    top: 24px; /* Ekran padding'ine uyumlu */
+    left: 24px;
+    background: none;
+    border: none;
+    color: #00BCD4;
+    font-size: 1em;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s;
+    z-index: 10;
+}
+.back-button:hover {
+    color: #FFC107;
+}
+
+/* --- LOGO VE BAŞLIKLAR --- */
+.logo {
+    color: #00BCD4; /* Neon Mavi Vurgu */
+    font-size: 3.5em;
+    margin-top: 40px;
+    margin-bottom: 5px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.4); /* Neon Etkisi */
+}
+
+.screen-title {
+    color: #FFFFFF;
     margin-bottom: 30px;
+    font-size: 1.8em;
+    font-weight: 600;
+    /* Geri butonu olduğu ekranlar için üst boşluğu artır */
+    margin-top: 40px; 
 }
 
-/* Loading Bar */
-#loader {
-    width: 80%;
-    margin: 0 auto 30px;
+/* --- BUTONLAR VE FORMLAR --- */
+input[type="text"], input[type="email"] {
+    width: calc(100% - 40px);
+    padding: 18px 20px;
+    margin-bottom: 18px;
+    border: none;
+    border-radius: 18px; /* Daha yumuşak köşeler */
+    background-color: #1F1F1F;
+    color: #E0E0E0;
+    font-size: 1em;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5); /* Hafif iç gölge */
+    transition: background-color 0.2s;
+}
+input[type="text"]:focus, input[type="email"]:focus {
+    outline: 2px solid #00BCD4;
+    background-color: #242424;
 }
 
-#loadingBar {
+.main-button {
+    background-color: #00BCD4;
+    color: #121212;
+    border: none;
+    padding: 18px 25px;
+    border-radius: 18px;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: 800;
+    width: 100%;
+    transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    margin-top: 15px;
+    box-shadow: 0 6px 15px rgba(0, 188, 212, 0.4);
+}
+
+.main-button:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 5px rgba(0, 188, 212, 0.8);
+}
+
+.main-button:hover:not(:disabled) {
+    background-color: #0097a7;
+}
+
+.main-button:disabled {
+    background-color: #333333;
+    color: #888888;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.huge-button {
+    margin-top: 60px;
+    padding: 28px 30px;
+    font-size: 1.6em;
+    letter-spacing: 1px;
+    border-radius: 20px;
+}
+
+.small-auth-link {
+    margin-top: 40px;
+    font-size: 0.9em;
+    color: #A0A0A0;
+}
+.small-auth-link a {
+    color: #00BCD4;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.2s;
+}
+
+
+/* --- İLERLEME ÇUBUĞU STİLLERİ --- */
+.progress-bar-container {
+    width: 100%;
     height: 10px;
-    background: #1a1a1a; /* Daha koyu bar arka planı */
+    background-color: #1F1F1F;
     border-radius: 5px;
     overflow: hidden;
-}
-
-#loadingFill {
-    height: 100%;
-    background: #00bcd4; /* Mavi/Cyan yükleme rengi */
-    width: 0%;
-    transition: width 0.1s linear;
-}
-
-/* Konuşma Balonu */
-#speech {
-    background: #111111; /* Koyu arka planla uyumlu */
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #333333;
-    margin-bottom: 50px; 
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-}
-
-#speechText {
-    font-size: 18px;
-    margin: 0 0 10px 0;
-}
-
-#speech small {
-    display: block;
-    font-size: 12px;
-    color: #aaaaaa;
-}
-
-/* İntroyu Atla Butonu */
-.skip-btn {
-    position: absolute; 
-    bottom: 20px;       
-    right: 20px;        
-    background: transparent;
-    border: none;
-    color: #00bcd4; /* Tema rengiyle aynı */
-    font-size: 14px;
-    cursor: pointer;
-    text-decoration: underline;
-    opacity: 0.8;
-    transition: opacity 0.2s;
-    padding: 10px; 
-    z-index: 10; 
-}
-
-.skip-btn:hover {
-    opacity: 1;
-}
-
-/* --- PLACEMENT TEST --- */
-
-.test-header {
-    margin-bottom: 20px;
-    width: 100%; /* İçerik soldan sağa yayılsın */
-    text-align: center;
-}
-
-#placementSpeech {
-    color: #aaaaaa;
-    font-style: italic;
-    margin-top: 10px;
-}
-
-#questionArea {
-    margin-top: 30px;
-    width: 100%; /* Soru alanı yayılsın */
-}
-
-#questionText {
-    font-size: 20px;
     margin-bottom: 25px;
-    font-weight: 600;
-    text-align: left; /* Sorunun soldan başlamasını sağladık */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
-#answers {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    width: 100%; /* Cevaplar tam genişlikte olsun */
-}
-
-/* Cevap Butonları */
-#answers button, .action-btn {
-    padding: 15px 20px;
-    font-size: 16px;
-    border: 2px solid #333333;
-    border-radius: 8px;
-    background-color: #111111; 
-    color: #f0f0f0;
-    cursor: pointer;
-    transition: background-color 0.2s, border-color 0.2s;
-    text-align: left; /* Cevap metinleri soldan başlasın */
-    width: 100%;
-}
-
-#answers button:hover:not(:disabled) {
-    background-color: #1a1a1a;
-    border-color: #00bcd4;
-}
-
-#answers button:disabled {
-    cursor: default;
-    opacity: 0.7;
-}
-
-/* Aksiyon Butonları (Anladım, Derslere Başla, Devam Et) */
-.action-btn {
-    background-color: #00bcd4; /* Tema rengi */
-    border-color: #00bcd4;
-    color: #000000;
-    font-weight: 700;
-    text-align: center;
-    margin-top: 20px;
-}
-
-/* Renkler: Doğru/Yanlış/Açıklama */
-#answers button[style*="background: rgb(34, 197, 94)"], /* Doğru (Green) */
-#answers button[style*="background: rgb(239, 68, 68)"], /* Yanlış (Red) */
-#answers button[style*="background: rgb(245, 158, 11)"] { /* Açıklama (Yellow/Orange) */
-    color: #000000; /* Metin rengini siyah yap ki parlak renkte okunsun */
+.progress-bar {
+    height: 100%;
+    width: 0%; 
+    background-color: #FFC107; /* Altın Sarısı */
+    border-radius: 5px;
+    transition: width 0.4s ease-in-out;
+    box-shadow: 0 0 5px rgba(255, 193, 7, 0.8);
 }
 
 
-/* Hata Açıklaması Kutusu */
-#explanationBox {
-    background: #1a1a1a;
+/* --- DİYALOG KUTUSU (INTRO) --- */
+.dialogue-box {
+    background-color: #1F1F1F;
+    border: 1px solid #00BCD4;
+    border-radius: 15px;
     padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #00bcd4;
-    text-align: center;
-    margin-top: 20px;
-    width: 100%;
-}
-
-.explanation-content {
-    background: #000000;
-    padding: 15px;
-    border-radius: 8px;
-}
-
-.explanation-content .penguin-icon {
-    font-size: 40px;
-    margin-bottom: 10px;
-}
-
-#explanationText {
-    font-size: 16px;
+    margin-bottom: 25px;
+    min-height: 100px;
+    text-align: left;
+    white-space: pre-wrap;
+    cursor: pointer;
+    position: relative;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); 
     line-height: 1.5;
 }
 
-/* --- BİTİŞ EKRANI --- */
-#finishScreen h3 {
-    color: #00bcd4;
-    margin: 15px 0;
+#clickPrompt {
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    font-size: 0.8em;
+    color: #00BCD4;
+    font-weight: 600;
+    animation: pulse 1.5s infinite;
 }
 
-.level-description {
+@keyframes pulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.5; }
+}
+
+/* --- TEST SORU ALANI TASARIMI --- */
+#placementTest {
+    padding-top: 24px;
+}
+
+.test-title {
+    color: #FFC107; /* Altın Sarı Vurgu */
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+#questionArea, #vocabQuestionArea {
+    background-color: #1F1F1F;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+}
+
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333333;
+}
+
+.progress-info {
+    color: #A0A0A0;
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.question-title {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0 0 30px 0;
+    text-align: left;
+    color: #FFFFFF;
+}
+
+.vocab-word-display {
+    text-align: center;
+    font-size: 2.5em;
+    color: #00BCD4;
+    margin: 20px 0;
+    font-weight: 800;
+    text-shadow: 0 0 10px rgba(0, 188, 212, 0.6);
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.option-btn {
+    background-color: #2A2A2A;
+    color: #E0E0E0;
+    border: 1px solid #333333;
+    padding: 18px 20px;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 1.1em;
+    text-align: left;
+    transition: background-color 0.2s, border-color 0.2s, transform 0.1s, box-shadow 0.2s;
+    font-weight: 600;
+}
+
+.option-btn:hover:not(:disabled) {
+    background-color: #333333;
+    border-color: #00BCD4;
+    box-shadow: 0 0 5px rgba(0, 188, 212, 0.5);
+}
+
+.option-btn:active:not(:disabled) {
+    transform: scale(0.99);
+}
+
+/* Cevap geri bildirimi (feedback) */
+.option-btn.correct {
+    background-color: #10B981; /* Zümrüt Yeşili */
+    border-color: #10B981;
+    color: white;
+    font-weight: 700;
+    animation: success-pulse 0.5s ease-out;
+}
+
+.option-btn.wrong {
+    background-color: #EF4444; /* Canlı Kırmızı */
+    border-color: #EF4444;
+    color: white;
+}
+
+@keyframes success-pulse {
+    0% { transform: scale(1); box-shadow: 0 0 15px rgba(16, 185, 129, 0.8); }
+    50% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+.option-btn:disabled {
+    cursor: default;
+    opacity: 0.8;
+}
+
+.feedback {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #1F1F1F;
+    border-radius: 12px;
+    color: #FFC107;
     font-style: italic;
-    color: #aaaaaa;
+    font-size: 1em;
+    text-align: left;
+    border: 1px solid #333333;
+    overflow: auto; /* İçerik taşmasını engelle */
 }
 
-#motivationArea {
-    margin-top: 20px;
+.feedback strong {
+    color: #FFFFFF;
+}
+
+.small-next-button {
+    width: auto;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    font-weight: 600;
+    border-radius: 12px;
+    margin-top: 15px;
+    float: right; /* Açıklama kutusunun sağına hizala */
+    background-color: #FFC107;
+    color: #121212;
+    box-shadow: none;
+}
+.small-next-button:hover {
+    background-color: #e0ac00;
+}
+
+
+/* --- PENGUEN MOTİVASYON KUTUSU --- */
+.penguin-dialog-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background-color: #00BCD4; 
+    color: #121212;
+    padding: 25px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 188, 212, 0.6);
+    font-size: 1.1em;
+    font-weight: 600;
+    min-height: 100px;
+    text-align: left;
+}
+
+.penguin-icon {
+    font-size: 3em;
+    flex-shrink: 0;
+}
+
+.penguin-dialog-box strong {
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 800;
+}
+
+.penguin-dialog-box p {
+    margin: 0;
+}
+
+
+/* --- ROZET STİLLERİ (Premium) --- */
+.level-badge {
+    display: inline-block;
+    background-color: #FFC107; /* Altın Sarı */
+    color: #121212;
+    padding: 8px 18px;
+    border-radius: 25px;
+    font-size: 1.2em;
+    font-weight: 800;
+    box-shadow: 0 3px 10px rgba(255, 193, 7, 0.4);
+}
+
+.level-badge.large {
+    font-size: 2.2em;
+    padding: 12px 25px;
+    background-color: #00BCD4;
+    color: #121212;
+    box-shadow: 0 5px 15px rgba(0, 188, 212, 0.6);
+}
+
+.level-badge.small {
+    font-size: 0.9em; 
+    padding: 6px 12px;
+    background-color: #FFC107;
+    color: #121212;
+    margin: 0;
+    vertical-align: middle;
+    line-height: 1;
+}
+
+
+/* --- TEST BİTİŞ EKRANI --- */
+.result-box {
+    background-color: #1F1F1F;
+    border-radius: 20px;
+    padding: 30px;
+    margin: 40px 0;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+.result-box-small {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #1F1F1F;
+    margin-bottom: 20px;
+}
+
+
+/* ------------------------------------------------ */
+/* --- UYGULAMA İÇİ NAVİGASYON VE PROFİL STİLLERİ --- */
+/* ------------------------------------------------ */
+
+.app-header {
     width: 100%;
+    padding: 24px;
+    text-align: left;
+    background-color: #121212;
+    border-bottom: 1px solid #333333;
+    box-sizing: border-box;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.7);
+}
+.app-title {
+    color: #00BCD4;
+    font-size: 1.8em;
+    margin: 0;
+    font-weight: 800;
+}
+
+.app-content {
+    flex-grow: 1; 
+    padding: 24px;
+    overflow-y: auto; 
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- BOTTOM NAV (Alt Menü) --- */
+.bottom-nav {
+    display: flex;
+    width: 100%;
+    background-color: #0A0A0A; /* En koyu siyah */
+    border-top: 1px solid #333333;
+    padding: 10px 0;
+    justify-content: space-around;
+    box-sizing: border-box;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.8);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: #A0A0A0;
+    font-size: 0.9em;
+    padding: 15px 5px;
+    cursor: pointer;
+    flex-grow: 1;
+    transition: color 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-btn::before {
+    content: ''; 
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.4em;
+    /* İkonlar için placeholder: Gerçek uygulamada Font Awesome/Material Icons kullanılmalıdır */
+}
+#navLessons::before { content: '📚'; }
+#navReview::before { content: '🔄'; }
+#navProfile::before { content: '👤'; }
+#navLogout::before { content: '🚪'; }
+
+
+.nav-btn.active {
+    color: #00BCD4;
+    font-weight: 700;
+}
+
+.logout-btn {
+    color: #EF4444; 
+}
+
+/* --- PROFİL KARTI STİLLERİ --- */
+.profile-card {
+    background-color: #1F1F1F;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    text-align: center;
+}
+
+.profile-header {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #333333;
+}
+/* ... (diğer profil stilleri aynı) */
+
+/* --- DERSLER VE KELİME SEÇİM KARTLARI (YENİ) --- */
+
+.section-title {
+    text-align: left;
+    color: #FFFFFF;
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+.lesson-card {
+    background-color: #1F1F1F;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    text-align: left;
+    cursor: pointer;
+    border-left: 5px solid #00BCD4;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+.lesson-card:hover {
+    background-color: #242424;
+}
+.lesson-icon {
+    font-size: 2em;
+    float: right;
+    color: #FFC107;
+}
+.lesson-card h3 {
+    margin-top: 0;
+    font-size: 1.2em;
+    color: #FFFFFF;
+}
+.lesson-card p {
+    margin-bottom: 0;
+    font-size: 0.9em;
+    color: #A0A0A0;
+}
+
+/* Kelime Seviye Listesi Stilleri */
+.level-list h4 {
+    text-align: left;
+    color: #FFC107;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
+}
+
+.level-card {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background-color: #1F1F1F;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+    border-left: 5px solid #A0A0A0;
+}
+
+.level-card.special-test {
+    border-left-color: #10B981; /* Tespit testi vurgusu */
+    background-color: #242424;
+}
+
+.level-card.active-level {
+    border-left-color: #00BCD4;
+}
+
+.level-card.disabled {
+    opacity: 0.5;
+    pointer-events: none; /* Tıklanabilirliği tamamen kaldır */
+}
+.level-card.disabled .small-next-button {
+    background-color: #333333;
+    color: #888888;
+}
+
+.level-card h3 {
+    margin: 0 0 10px 0;
+    color: #FFFFFF;
+}
+
+.status-message {
+    font-style: italic;
+    color: #10B981;
+    margin-bottom: 10px;
+}
+.status-warning {
+    color: #EF4444;
+}
+.status-simple {
+    color: #FFC107;
+}
+.status-active {
+    color: #00BCD4;
+    font-weight: 600;
 }
